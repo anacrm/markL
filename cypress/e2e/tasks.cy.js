@@ -4,6 +4,14 @@ import { faker } from '@faker-js/faker';
 
 describe('Tasks', () => {
 
+    let testData
+
+    before(() => {
+        cy.fixture('tasks').then((t) => {
+            testData = t
+        })
+    })
+
     context('Task Registration', () => {
 
         it('It should publish a new task', () => {
@@ -18,10 +26,7 @@ describe('Tasks', () => {
         })
         it('It should not permit register the same task more then one time', () => {
 
-            const task = {
-                name: "Study",
-                is_done: false
-            }
+            const task = testData.dup
 
             cy.removeTaskbyName(task.name)
 

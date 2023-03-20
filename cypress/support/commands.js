@@ -43,7 +43,7 @@ Cypress.Commands.add('createTask', (taskName = '') => {
 Cypress.Commands.add('removeTaskbyName', (taskName) => {
     cy.request({
         method: 'DELETE',
-        url: 'http://localhost:3333/helper/tasks',
+        url: Cypress.env('apiUrl') + '/helper/tasks',
         body: {
             name: taskName,
         },
@@ -55,7 +55,7 @@ Cypress.Commands.add('removeTaskbyName', (taskName) => {
 Cypress.Commands.add('postTesk', (task) => {
     cy.request({
         method: 'POST',
-        url: 'http://localhost:3333/tasks',
+        url: Cypress.env('apiUrl') + '/tasks',
         body: {
             name: task.name,
             is_done: task.is_done
